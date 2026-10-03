@@ -11,8 +11,8 @@ riottenere l'originale byte per byte. Nient'altro puo' quindi essere cambiato.
 import os, re, shutil, sys, json
 
 ROOT = "/Users/giorgiolai/Desktop/progetto_tirocinio"
-DEST = os.path.join(ROOT, "tesi_anonimizzata")
-SKIP_DIRS = {".git", ".idea", "tesi_anonimizzata"}
+DEST = os.path.join(ROOT, "nomi_aziendali_cambiati")
+SKIP_DIRS = {".git", ".idea", "nomi_aziendali_cambiati"}
 SKIP_PATHS = {"RACCOLTA_RISULTATI/out"}
 
 NAMES = ["Asteria Docs", "Lumen Market", "Vesper Logistics",

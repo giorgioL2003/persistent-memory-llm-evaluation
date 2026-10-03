@@ -154,7 +154,7 @@
       "evaluation_sources": [],
       "evaluation_status": "prova tecnica o dimostrativa; nessuna valutazione formale associata identificata",
       "metric_sources": [],
-      "presentation_copy": "tesi_anonimizzata/results/demo_scenari_01/sc04.jsonl"
+      "presentation_copy": "nomi_aziendali_cambiati/results/demo_scenari_01/sc04.jsonl"
     },
     {
       "file": "results/generation_pilot.jsonl",
@@ -403,7 +403,7 @@
       ],
       "evaluation_status": "prima versione; valutazione assistita in Markdown",
       "metric_sources": [],
-      "presentation_copy": "tesi_anonimizzata/results/rq2/generation_dev_sc04.jsonl"
+      "presentation_copy": "nomi_aziendali_cambiati/results/rq2/generation_dev_sc04.jsonl"
     },
     {
       "file": "results/rq2/retrieval_repair_v3/generation_dev_sc03_u.jsonl",
@@ -464,7 +464,7 @@
       ],
       "evaluation_status": "U e G ricostruiti; giudizi assistiti riportati nei documenti",
       "metric_sources": [],
-      "presentation_copy": "tesi_anonimizzata/results/rq2/sc04_repair_v3/generation_dev_sc04_ug.jsonl"
+      "presentation_copy": "nomi_aziendali_cambiati/results/rq2/sc04_repair_v3/generation_dev_sc04_ug.jsonl"
     },
     {
       "file": "results/rq2/sc05_dev_v1/generation_dev_sc05.jsonl",
@@ -527,7 +527,7 @@
       ],
       "evaluation_status": "giudizi proposti, non approvati",
       "metric_sources": [],
-      "presentation_copy": "tesi_anonimizzata/results/rq2/t_ext_v1/generation_dev_t_sc04.jsonl"
+      "presentation_copy": "nomi_aziendali_cambiati/results/rq2/t_ext_v1/generation_dev_t_sc04.jsonl"
     },
     {
       "file": "results/rq2/t_ext_v1/generation_dev_t_sc05.jsonl",

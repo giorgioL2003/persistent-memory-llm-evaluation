@@ -1,0 +1,337 @@
+
+===== PAGE 1 =====
+Personalization of Large Language Models: A Survey
+Problema affrontato.Il paper analizza la frammentazione della ricerca sulla personalizzazione degli LLM. In particolare, i
+lavori precedenti considerano spesso separatamente la generazione di testo personalizzato e l’impiego degli LLM in applicazioni
+personalizzate, come raccomandazione, ricerca e classificazione. Mancano inoltre definizioni, tassonomie, dataset e protocolli di
+valutazione condivisi.
+Idea principale.Gli autori propongono una visione unificata della personalizzazione degli LLM. La letteratura viene organizzata
+secondo: finalità del sistema, granularità della personalizzazione, tecnica utilizzata, tipo di dataset e modalità di valutazione. La
+distinzione principale è travalutazione diretta, in cui si misura la qualità del testo personalizzato, evalutazione indiretta, in cui il
+testo o la rappresentazione prodotta dall’LLM viene usata per migliorare un task downstream.
+Tipo di memoria studiata.Il paper non propone una specifica architettura di memoria, ma considera diverse forme di
+informazione persistente sull’utente: documenti e testi scritti, attributi statici, cronologia delle interazioni e preferenze esplicite.
+Dal punto di vista dei sistemi di memoria, tratta soprattutto: (i) memoria esterna recuperabile tramite RAG; (ii) memoria
+inserita nel contesto o in profili testuali; (iii) memoria parametrica, appresa tramite fine-tuning; (iv) rappresentazioni latenti o
+embedding dell’utente. Sono inoltre distinti tre livelli di granularità: singolo utente, persona o gruppo di utenti e preferenze
+globali.
+Funzionamento generale.Un sistema riceve una richiesta e accede ai dati dell’utente mediante una funzione di adattamento,
+ad esempio un modulo di retrieval. Le informazioni rilevanti vengono integrate nel prompt, in un embedding o nei parametri
+del modello. L’LLM genera quindi un testo personalizzato, che può essere valutato direttamente oppure trasformato in una
+rappresentazione utilizzata da un modello downstream.
+Risultati principali. Essendo una survey, il paper non presenta un nuovo sistema né esperimenti comparativi propri. Il
+risultato principale è una tassonomia complessiva delle tecniche: RAG, prompting, representation learning, fine-tuning e RLHF.
+La revisione mostra che non esiste una soluzione universalmente migliore: la scelta dipende dalla quantità di dati disponibili,
+dalla granularità richiesta, dai costi di aggiornamento e dal tipo di valutazione. Gli autori evidenziano inoltre la scarsità di
+benchmark comuni e di dati con testo ground-truth scritto dagli utenti.
+Vantaggi e limiti.Il principale vantaggio è l’organizzazione unificata di una letteratura molto eterogenea, includendo dati,
+tecniche, applicazioni e metriche. La survey offre anche criteri utili per valutare stile, tono, rilevanza e accuratezza. Tuttavia,
+non fornisce un benchmark sperimentale comune, misure standard di efficienza o un confronto quantitativo controllato tra sistemi.
+Restano aperti problemi di cold start, privacy, dati obsoleti, bias, scalabilità e valutazione della reale soddisfazione dell’utente.
+Utilità per un framework comparativo.Il paper può essere usato come base per definire le dimensioni di confronto di un
+framework per memorie LLM: sorgente dei dati, granularità, memoria parametrica o non parametrica, strategia di lettura e
+aggiornamento, valutazione diretta o downstream, qualità della personalizzazione, privacy, scalabilità e robustezza con pochi
+dati. È quindi particolarmente utile per costruire la tassonomia e il protocollo di valutazione, ma deve essere integrato con studi
+sperimentali specifici sulle architetture di memoria.
+
+===== PAGE 2 =====
+A Survey on the Memory Mechanism of Large Language Model Based Agents
+Zhang et al., 2024 — Sintesi per revisione della letteratura
+Problema affrontato. La letteratura sulla memoria degli agenti basati su LLM presenta numerose soluzioni, ma risulta
+frammentata e priva di una classificazione condivisa. Il paper cerca quindi di chiarire cosa si intenda per memoria di un agente,
+perché sia necessaria e come possa essere progettata e valutata in modo sistematico.
+Idea principale. Il contributo centrale è una tassonomia che descrive i sistemi di memoria attraverso tre dimensioni:fonti
+della memoria, forma di rappresentazione e operazioni eseguite. Il paper distingue inoltre tra valutazione diretta del modulo di
+memoria e valutazione indiretta attraverso le prestazioni dell’agente in specifici task.
+Tipo di memoria studiato.La survey considera sia memoria a breve termine, basata sulle interazioni interne al trial corrente,
+sia memoria a lungo termine, derivata da trial o task precedenti. Include anche conoscenza esterna. La memoria può essere: (i)
+testuale, conservata come conversazioni, osservazioni, riassunti, traiettorie o documenti recuperabili; (ii)parametrica, incorporata
+nei pesi del modello mediante fine-tuning o knowledge editing. La memoria testuale è indicata come la soluzione attualmente più
+diffusa.
+Funzionamento generale.Il framework astratto proposto comprende tre operazioni:writing, che trasforma azioni e osservazioni
+in elementi memorizzabili;management, che organizza, riassume, unisce o dimentica le informazioni;reading, che recupera le
+informazioni rilevanti per il contesto corrente. La memoria recuperata viene inserita nel prompt o influenza implicitamente il
+modello, supportando la scelta dell’azione successiva.
+Risultati principali. Essendo una survey, il paper non presenta risultati sperimentali propri né dimostra che un particolare
+metodo sia globalmente superiore. Il risultato principale è l’organizzazione della letteratura esistente e l’identificazione di criteri
+di valutazione. Questi comprendono coerenza e qualità della memoria richiamata, correttezza della risposta, accuratezza del
+retrieval, tempo di esecuzione e costo hardware. La valutazione indiretta utilizza task come conversazione, question answering
+multi-sorgente, gestione di contesti lunghi, giochi, raccomandazione e generazione di codice.
+Vantaggi e limiti.Il principale vantaggio è la visione generale e modulare, utile per confrontare sistemi molto diversi con una
+terminologia comune. La distinzione tra fonti, forme e operazioni evidenzia chiaramente le principali scelte progettuali. Tra i
+limiti, il confronto è prevalentemente qualitativo: non viene fornito un benchmark uniforme né una valutazione sperimentale
+controllata dei sistemi analizzati. La memoria parametrica risulta ancora poco studiata. Rimangono inoltre aperti problemi di
+scalabilità, retrieval inaccurato, informazioni obsolete o contraddittorie, costo computazionale, privacy e valutazioni dipendenti
+dal task o da giudizi soggettivi.
+Utilità per un framework comparativo.Il paper può fornire lo schema iniziale delle variabili indipendenti del framework:
+fonte dei dati, durata della memoria, rappresentazione, strategia di scrittura, gestione e lettura. Suggerisce inoltre di separare
+metriche intrinseche del modulo, quali precisione del retrieval, latenza e costo, da metriche estrinseche, quali successo nel task,
+coerenza e personalizzazione. Non specifica però un protocollo sperimentale standardizzato: per un confronto equo sarà necessario
+fissare LLM, prompt, dataset, budget di memoria e task, includendo baseline senza memoria e semplici finestre di contesto.
+
+===== PAGE 3 =====
+Augmenting Language Models with Long-Term Memory
+Wang et al., 2023
+1. Problema affrontato.Gli LLM standard possono elaborare solo finestre di contesto di lunghezza fissa e quindi non riescono
+a sfruttare efficacemente informazioni provenienti da parti molto lontane di un documento o da numerosi esempi precedenti.
+Le soluzioni che estendono direttamente il contesto sono costose, mentre i sistemi di memoria precedenti possono soffrire di
+memory staleness, cioè incoerenza tra rappresentazioni memorizzate in passato e modello aggiornato durante l’addestramento.
+2. Idea principale. Il paper proponeLongMem, un’architettura che separa l’encoder della memoria dal modulo che recupera
+e utilizza la memoria. Il backbone LLM resta congelato e produce le rappresentazioni da memorizzare; una rete laterale
+addestrabile, chiamata Residual SideNet, recupera le informazioni rilevanti e le integra nella predizione.
+3. Tipo di memoria.È una memoria esterna, non parametrica, a lungo termine e basata su retrieval. Memorizza coppie
+chiave–valore derivate dagli strati di attenzione del Transformer. La memoria è aggiornata come una coda dei contesti
+precedenti e può contenere fino a circa 65k token negli esperimenti.
+4. Funzionamento generale.I testi lunghi sono divisi in segmenti. Il backbone congelato elabora ogni segmento e salva nella
+memoria le relative chiavi e valori di attenzione. Per il segmento corrente, la SideNet genera query, recupera i chunk più
+simili con una ricerca top-k e combina attenzione locale e memoria recuperata tramite un meccanismo di fusione con gate. La
+SideNet riceve inoltre connessioni residue dagli strati del backbone, così da riutilizzarne la conoscenza senza modificarlo.
+5. Principali risultati. Su PG-22 e ArXiv,LongMem riduce la perplexity rispetto a GPT-2 e a Memorizing Transformer.
+Su ChapterBreak raggiunge il 40,5% di accuratezza, superiore ai baseline considerati. Nel memory-augmented in-context
+learning, l’uso di migliaia di esempi in memoria migliora i risultati su cinque task NLU e su SQuAD; con 20 esempi locali e
+2000 in memoria, la media passa a 66,7%, contro circa 58,6–58,7% dei baseline.
+6. Vantaggi e limiti.I vantaggi principali sono: riduzione della memory staleness, riuso di un LLM pre-addestrato congelato,
+minore rischio di catastrophic forgetting, capacità di gestire contesti molto lunghi e migliore efficienza rispetto all’attenzione
+densa su sequenze estese. I limiti includono il costo aggiuntivo del retrieval, la dipendenza da iperparametri come dimensione
+della memoria e dimensione dei chunk, la necessità di un addestramento specifico della SideNet e una valutazione basata su
+un backbone relativamente piccolo. Il paper non analizza in modo approfondito robustezza, privacy, qualità della memoria in
+scenari rumorosi o confronto con sistemi RAG moderni.
+7. Utilità per un framework comparativo.Il paper suggerisce dimensioni utili di confronto tra memorie per LLM: natura
+della memoria, rappresentazione memorizzata, strategia di aggiornamento, metodo di retrieval, granularità dei chunk, fusione
+con il contesto locale, rischio di staleness, costo computazionale, capacità massima e prestazioni su long-context modeling e
+in-context learning. LongMem può quindi essere usato come esempio di memoria interna al Transformer basata su key–value
+di attenzione e architettura disaccoppiata.
+
+===== PAGE 4 =====
+Mem0 – memoria a lungo termine scalabile per agenti LLM
+Chhikara et al.,Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory (2025)
+1. Problema affrontato
+Gli LLM non mantengono naturalmente informazioni persistenti tra sessioni e perdono coerenza quando la cronologia supera la
+finestra di contesto. Usare tutto lo storico è costoso, lento e introduce molto contenuto irrilevante; i sistemi RAG standard,
+invece, recuperano blocchi di testo che possono essere rumorosi o poco precisi.
+2. Idea principale
+Il paper proponeMem0, un’architettura che trasforma progressivamente le conversazioni in memorie sintetiche e salienti, le
+aggiorna quando arrivano nuove informazioni e recupera solo quelle utili alla domanda corrente. Propone inoltreMem0g, una
+variante che aggiunge una rappresentazione a grafo per modellare esplicitamente entità, relazioni e cambiamenti temporali.
+3. Tipo di memoria studiata
+• Mem0: memoria esterna, persistente, semantica e a lungo termine, rappresentata come fatti testuali compatti indicizzati
+tramite embedding.
+• Mem0g: memoria ibrida testuale/strutturata basata su knowledge graph, con nodi-entità, archi-relazione, timestamp e
+relazioni rese obsolete senza cancellazione fisica.
+Non viene studiata memoria interna nei pesi del modello; la memoria è gestita fuori dall’LLM.
+4. Funzionamento generale
+Per ogni nuova coppia di messaggi, Mem0 usa un LLM insieme a un riassunto della conversazione e agli ultimi messaggi per
+estrarre fatti candidati. Per ciascun fatto recupera le memorie più simili e sceglie una delle operazioniADD, UPDATE, DELETE o
+NOOP. In fase di risposta, vengono recuperate le memorie semanticamente più pertinenti. Mem0g estrae invece entità e triple
+relazionali, rileva conflitti, aggiorna il grafo e combina recupero centrato sulle entità con ricerca semantica sulle triple.
+5. Principali risultati
+La valutazione usa LOCOMO: 10 conversazioni lunghe, circa 26 mila token e circa 200 domande per conversazione, suddivise in
+single-hop, multi-hop, temporali e open-domain. Mem0 ottiene i risultati migliori soprattutto su single-hop e multi-hop; Mem0g è
+migliore nelle domande temporali e raggiunge il miglior punteggio complessivo tra i sistemi di memoria testati (LLM-as-a-Judge:
+68,44%). Il full-context resta leggermente superiore in qualità complessiva (72,90%), ma Mem0 riduce la latenza p95 da 17,1 s a
+1,44 s e usa oltre il 90% di token in meno. Entrambi superano tutte le configurazioni RAG valutate; Zep rimane leggermente
+migliore nelle domande open-domain.
+6. Vantaggi e limiti
+Vantaggi: buon compromesso tra accuratezza, costo e latenza; aggiornamento incrementale; gestione esplicita di ridondanze e
+contraddizioni; memoria subito interrogabile; distinzione utile tra rappresentazione testuale efficiente e grafo relazionale.
+Limiti: valutazione concentrata su un solo benchmark conversazionale e su sole 10 conversazioni; forte dipendenza da GPT-4o-
+mini per estrazione, aggiornamento e risposta; uso di LLM-as-a-Judge, quindi possibile sensibilità al valutatore; Mem0g aumenta
+token e latenza e non migliora il multi-hop; i costi completi di costruzione/aggiornamento della memoria non sono confrontati in
+modo uniforme per tutti i baseline; non sono dimostrate generalizzazione multimodale, domini non conversazionali o robustezza
+a errori di estrazione nel lungo periodo.
+7. Utilità per un framework comparativo
+Il paper offre una buona struttura di confronto lungo quattro assi:qualità per tipo di domanda, latenza di retrieval e
+totale, token recuperati/occupazione della memoriae tempo di costruzione/aggiornamento. Suggerisce inoltre di
+classificare i sistemi per rappresentazione (testo, chunk RAG, grafo, full-context), politiche di aggiornamento, capacità di gestire
+conflitti e supporto temporale. Per un framework generale andrebbero aggiunti: costo di scrittura della memoria, precisione
+dell’estrazione, stabilità dopo molte sessioni, privacy/cancellazione, dipendenza dal modello, portabilità tra benchmark e qualità
+del recupero separata dalla qualità del generatore.
+Nota: il paper non specifica in modo completo test su larga scala reale, robustezza a domini differenti o analisi sistematiche degli errori di
+memoria; tali aspetti non vanno inferiti dai risultati LOCOMO.
+
+===== PAGE 5 =====
+Generative Agents: Interactive Simulacra of Human Behavior
+Park et al., UIST 2023
+1. Problema affrontato.Gli LLM possono generare comportamenti plausibili nel breve periodo, ma faticano a mantenere
+coerenza nel tempo quando un agente accumula molte esperienze, interagisce con altri agenti e deve ricordare eventi rilevanti.
+Il paper affronta quindi la costruzione di agenti credibili in ambienti aperti, capaci di ricordare, riflettere, pianificare e reagire
+in modo coerente.
+2. Idea principale. Gli autori propongono una architettura per “generative agents” che estende un LLM con tre componenti:
+una memoria persistente delle esperienze, un meccanismo di riflessione che produce inferenze di livello superiore e un modulo
+di pianificazione gerarchica. L’obiettivo non è riprodurre fedelmente la cognizione umana, ma ottenere un comportamento
+percepito come credibile.
+3. Tipo di memoria studiato.È unamemoria a lungo termine esterna, episodica e testuale, chiamata memory
+stream. Contiene osservazioni, piani e riflessioni in linguaggio naturale. Il recupero combina tre segnali:recency, importance e
+relevance semantica tramite embedding. Le riflessioni costituiscono una forma di memoria astratta/semantica derivata dalle
+esperienze episodiche.
+4. Funzionamento generale. Ogni agente percepisce l’ambiente e registra gli eventi nella memoria. Quando deve agire,
+il sistema recupera un sottoinsieme di ricordi pertinenti, li inserisce nel prompt dell’LLM e genera l’azione o la reazione.
+Periodicamente, l’LLM sintetizza i ricordi in riflessioni più generali. I piani giornalieri vengono prodotti dall’alto verso il
+basso e scomposti in attività più dettagliate; osservazioni inattese possono modificare il piano. Il sistema è dimostrato in un
+mondo simulato, Smallville, con 25 agenti.
+5. Risultati principali. Nella valutazione controllata, l’architettura completa ottiene il punteggio di credibilità più alto
+(TrueSkillµ = 29.89), superiore alle varianti senza riflessione (26.88), senza riflessione e pianificazione (25.64), al confronto
+con crowdworker (22.95) e alla versione priva di memoria, pianificazione e riflessione (21.21). Le differenze sono globalmente
+significative. Nella simulazione end-to-end di due giorni emergono diffusione di informazioni, nuove relazioni e coordinamento,
+come l’organizzazione autonoma di una festa a partire da un singolo intento iniziale. Non viene però fornito un benchmark
+standard di accuratezza della memoria su orizzonti lunghi.
+6. Vantaggi e limiti.Vantaggi: architettura modulare e interpretabile; memoria dinamica; maggiore coerenza temporale;
+capacità di produrre comportamenti sociali emergenti; valutazione tramite ablation study. Limiti: recupero talvolta errato o
+incompleto, ricordi abbelliti/allucinati, dipendenza dai bias e dallo stile dell’LLM, regole fisiche/sociali non sempre comprese,
+elevati costi computazionali e temporali, esperimenti brevi e in un solo ambiente. Robustezza a prompt hacking ememory
+hacking non è valutata in modo sistematico.
+7. Utilità per un framework comparativo.Il paper offre una buona baseline architetturale e suggerisce dimensioni di
+confronto concrete: rappresentazione della memoria, politica di scrittura, retrieval, consolidamento/riflessione, uso della
+memoria nella pianificazione, coerenza temporale, accuratezza del richiamo, allucinazioni, comportamento emergente, costo e
+scalabilità. Le ablation indicano inoltre che il framework dovrebbe isolare il contributo di ciascun modulo. Per un confronto
+rigoroso servirebbero però task standardizzati, orizzonti più lunghi, metriche automatiche di precisione/recall dei ricordi e
+controllo dell’LLM sottostante.
+Riferimento: J. S. Park et al., “Generative Agents: Interactive Simulacra of Human Behavior”, UIST 2023.
+
+===== PAGE 6 =====
+MemGPT – Towards LLMs as Operating Systems
+Packer et al., 2024
+1. Problema affrontato. Gli LLM hanno una finestra di contesto finita, che limita conversazioni molto lunghe e analisi
+di documenti estesi. Aumentare direttamente il contesto è costoso e non garantisce che il modello utilizzi bene tutte le
+informazioni.
+2. Idea principale.Il paper proponeMemGPT, un sistema ispirato alla memoria virtuale dei sistemi operativi. L’LLM gestisce
+dinamicamente quali informazioni mantenere nel contesto e quali spostare in memoria esterna, creando l’illusione di un
+contesto molto più ampio.
+3. Tipo di memoria studiata.È una memoriagerarchica, esterna, persistente e auto-gestita dall’agente. Comprende:
+contesto principale dell’LLM,working context modificabile, cronologia FIFO,recall storage per i messaggi passati earchival
+storage per informazioni o documenti di lunga durata. Non introduce una nuova memoria neurale interna al modello.
+4. Funzionamento generale.Un queue manager controlla la pressione sul contesto e, quando lo spazio sta terminando, avvisa
+l’LLM. Tramite chiamate di funzione, il modello può salvare, aggiornare, cercare e recuperare informazioni. I dati recuperati
+vengono reinseriti nel contesto; più chiamate possono essere concatenate per ricerche iterative o multi-hop.
+5. Risultati principali. Nei test di conversazione multi-sessione, MemGPT migliora nettamente il recupero di informazioni
+lontane: con GPT-4 raggiunge il 92,5% di accuratezza contro il 32,1% del baseline; con GPT-4 Turbo il 93,4% contro il
+35,3%. Nei task documentali mantiene prestazioni più stabili all’aumentare dei documenti disponibili e, nel recupero key-value
+annidato, è l’unico approccio che completa in modo consistente più passaggi oltre due livelli usando GPT-4.
+6. Vantaggi e limiti. Vantaggi:estende il contesto senza modificare o riaddestrare l’LLM; mantiene memoria persistente;
+supporta recupero iterativo e ragionamento su più fonti; è applicabile sia a chat sia a documenti.Limiti: dipende molto
+dalla capacità del modello di usare correttamente le funzioni; GPT-3.5 mostra prestazioni inferiori; il recupero dipende dalla
+qualità della ricerca vettoriale; l’agente può interrompere la ricerca troppo presto; gli esperimenti sono limitati a pochi task,
+piccoli campioni in alcune prove e valutazioni parzialmente basate su un LLM judge. Costi, latenza, robustezza a lungo
+termine e confronto approfondito con altre architetture di memoria non sono analizzati in modo completo.
+7. Utilità per un framework comparativo.Il paper offre una buona architettura di riferimento e suggerisce dimensioni
+di confronto concrete: struttura dei livelli di memoria, politiche di scrittura/evizione, meccanismo di retrieval, autonomia
+dell’LLM nella gestione della memoria, persistenza, capacità multi-hop, accuratezza su ricordi lontani, stabilità rispetto alla
+lunghezza del contesto, costi di chiamata e dipendenza dal modello di base. Può quindi fungere sia da baseline sia da caso
+rappresentativo dei sistemi di memoria gerarchica controllata dall’agente.
+
+===== PAGE 7 =====
+A-MEM: Agentic Memory for LLM Agents
+Problema. Il paper affronta la rigidità dei sistemi di memoria per agenti LLM. Le soluzioni esistenti permettono di memorizzare
+e recuperare interazioni passate, ma spesso richiedono strutture, schemi e operazioni definiti in anticipo. Questo limita la capacità
+della memoria di adattarsi a nuovi compiti e di riorganizzare la conoscenza durante interazioni di lunga durata.
+Idea principale. Gli autori propongono A-MEM, una memoria “agentica” ispirata al metodo Zettelkasten. Le esperienze
+vengono rappresentate come note atomiche arricchite semanticamente, collegate dinamicamente ad altre note e aggiornate quando
+arrivano nuove informazioni. L’elemento distintivo è quindi l’evoluzione autonoma della struttura della memoria, non soltanto il
+recupero agentico da un archivio statico.
+Tipo di memoria.A-MEM è una memoria esterna, persistente e a lungo termine per agenti LLM. Combina una rappresentazione
+vettoriale, utilizzata per la ricerca semantica, con una struttura simile a una rete o a un grafo di note interconnesse. Può essere
+classificata anche come memoria episodico-semantica: conserva le interazioni originali, ma genera descrizioni contestuali, parole
+chiave, tag e relazioni più astratte.
+Funzionamento generale. Ogni nuova interazione viene trasformata in una nota contenente testo originale, timestamp,
+contesto generato da un LLM, parole chiave, tag, embedding e collegamenti. L’embedding viene usato per selezionare le memorie
+storiche più simili. Un LLM valuta poi quali collegamenti creare e se aggiornare contesto, tag o parole chiave delle memorie
+esistenti. In fase di risposta, il sistema confronta l’embedding della query con quelli delle note e recupera le memorie più rilevanti.
+Il diagramma architetturale mostra quindi quattro fasi principali: costruzione della nota, generazione dei link, evoluzione della
+memoria e retrieval.
+Risultati principali. A-MEM viene valutato soprattutto su LoCoMo e DialSim, dataset di question answering su conversazioni
+lunghe. Il confronto include LoCoMo, ReadAgent, MemoryBank e MemGPT, utilizzando diversi foundation model. A-MEM
+ottiene generalmente i risultati migliori, con miglioramenti particolarmente evidenti nelle domande multi-hop e temporali.
+Su DialSim raggiunge un F1 di 3.45, contro 2.55 di LoCoMo e 1.18 di MemGPT. Gli studi di ablazione mostrano che sia la
+generazione dei collegamenti sia l’evoluzione delle memorie contribuiscono alle prestazioni. Gli autori riportano inoltre una forte
+riduzione dei token recuperati rispetto ai metodi che inseriscono quasi tutta la conversazione nel prompt e una crescita lineare
+dello spazio occupato.
+Vantaggi e limiti.I principali vantaggi sono l’organizzazione adattiva, la capacità di collegare informazioni distribuite tra
+sessioni, il supporto al ragionamento multi-hop e un retrieval relativamente compatto. I principali limiti dichiarati sono la
+dipendenza dalla qualità del modello utilizzato per generare descrizioni e collegamenti e il supporto limitato alle informazioni
+testuali. Inoltre, il sistema richiede più chiamate al LLM durante la scrittura e l’aggiornamento della memoria. Il paper non
+analizza in modo approfondito possibili errori cumulativi nell’evoluzione delle note, la stabilità dei collegamenti nel lungo periodo
+o la qualità fattuale delle memorie modificate.
+Utilità per un framework comparativo.Il paper suggerisce dimensioni utili per confrontare sistemi di memoria per LLM:
+formato della memoria, livello di strutturazione, modalità di scrittura, aggiornamento delle memorie esistenti, creazione di
+relazioni, algoritmo di retrieval, prestazioni per categoria di domanda, numero di token recuperati, latenza, costo e scalabilità.
+A-MEM può inoltre rappresentare la categoria delle memorie dinamiche e auto-organizzanti, da confrontare con memorie basate
+su cronologia completa, riassunti, gerarchie di contesto, forgetting mechanism o semplici vector store.
+
+===== PAGE 8 =====
+LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory
+Wu et al., ICLR 2025
+1. Problema affrontato.Il paper studia come valutare in modo realistico la memoria a lungo termine degli assistenti basati su
+LLM. I benchmark precedenti coprono solo parzialmente interazioni prolungate, aggiornamenti delle informazioni dell’utente,
+ragionamento temporale, informazioni fornite dall’assistente e capacità di astenersi quando la risposta non è presente nella
+cronologia.
+2. Ideaprincipale. Gliautoripropongono LongMemEval, unbenchmarkcon500domandeinseriteincronologieconversazionali
+estendibili, e una visione unificata dei sistemi di memoria articolata in tre fasi:indexing, retrieval e reading. Il paper usa il
+benchmark anche per confrontare diverse scelte progettuali e proporre ottimizzazioni.
+3. Tipo di memoria studiata. Il lavoro riguarda principalmente memoria esterna, testuale e persistente per assistenti
+conversazionali, modellata come archivio chiave–valore e usata tramite retrieval-augmented generation. Il benchmark, tuttavia, è
+dichiarato compatibile anche con sistemi long-context o con altre architetture di memoria. Le capacità valutate sono: estrazione
+di informazioni, ragionamento multi-sessione, aggiornamento della conoscenza, ragionamento temporale e astensione.
+4. Funzionamento generale.Le sessioni utente–assistente vengono elaborate online e trasformate in elementi di memoria. In
+fase di indicizzazione si sceglie la granularità dei valori e la rappresentazione delle chiavi; in fase di retrieval si recuperano gli
+elementi più rilevanti per la domanda; infine un LLM legge i contenuti recuperati e genera la risposta. Le principali ottimizzazioni
+sono: decomposizione delle sessioni in singoli round, espansione delle chiavi con fatti estratti, filtraggio temporale tramite query
+expansion e lettura con Chain-of-Note in formato strutturato JSON.
+5. Principali risultati.I sistemi attuali mostrano forti cali prestazionali su cronologie lunghe: i long-context LLM perdono
+circa il 30–60% rispetto al contesto oracle, mentre i sistemi commerciali testati risultano nettamente inferiori alla lettura offline
+della stessa cronologia. La decomposizione in round migliora spesso la QA; l’espansione delle chiavi con fatti aumenta in media
+Recall@k di circa 9,4% e accuratezza finale di circa 5,4%; la query expansion temporale migliora il recall sul sottoinsieme
+temporale di circa 6,8–11,3%; Chain-of-Note e JSON possono fornire fino a circa 10 punti assoluti di accuratezza in più anche
+con retrieval perfetto.
+6. Vantaggi e limiti. Vantaggi:copertura ampia delle abilità di memoria, cronologie configurabili fino a circa 1,5 milioni di
+token, annotazioni delle evidenze, metriche sia end-to-end sia di retrieval, e framework utile per isolare le scelte progettuali.
+Limiti: dati in larga parte sintetici e curati, solo 500 domande, uso di un LLM giudice per la valutazione, dipendenza da
+modelli forti per alcune ottimizzazioni temporali e analisi centrata soprattutto su memoria testuale RAG. Costi, latenza, privacy,
+cancellazione della memoria e robustezza ad avvelenamento sono riconosciuti ma non valutati sistematicamente.
+7. Utilità per un framework comparativo.Il paper offre una tassonomia direttamente riutilizzabile: confrontare i sistemi
+separando value, key, query, retrieval e strategia di lettura; misurare Recall@k/NDCG@k oltre all’accuratezza finale; valutare
+separatamente le cinque abilità; variare lunghezza della cronologia, budget di token e modello reader. È quindi una buona
+base per progettare benchmark modulari e ablation study tra memorie RAG, long-context, memorie basate su fatti e sistemi
+time-aware.
+
+===== PAGE 9 =====
+LoCoMo: Evaluating Very Long-Term Conversational Memory of LLM Agents
+Problema affrontato.Il paper evidenzia la mancanza di benchmark realistici per valutare la memoria conversazionale degli
+agenti LLM su periodi molto lunghi. I dataset precedenti coprono poche sessioni e contesti relativamente brevi, mentre un
+assistente reale dovrebbe ricordare informazioni, eventi e relazioni distribuiti su mesi di conversazioni.
+Idea principale. Gli autori introducono LoCoMo, un dataset e benchmark per la memoria conversazionale a lunghissimo
+termine. Il dataset contiene 50 conversazioni multimodali, con circa 300 turni, 9000 token e fino a 35 sessioni ciascuna. Le
+conversazioni sono generate da agenti LLM sulla base di persona ed eventi temporali causalmente collegati, quindi revisionate da
+annotatori umani.
+Tipo di memoria studiata.Il lavoro studia principalmente lamemoria episodica conversazionale esterna : informazioni su
+eventi, persone e interazioni passate vengono conservate nel dialogo o in strutture esterne e recuperate quando necessarie. Sono
+confrontati:
+• utilizzo diretto del contesto lungo;
+• RAG su turni di dialogo;
+• RAG su osservazioni strutturate relative ai parlanti;
+• RAG su riassunti delle sessioni.
+Nella pipeline di generazione vengono inoltre impiegate una memoria a breve termine basata su riassunti e una memoria a lungo
+termine composta da osservazioni dei singoli turni.
+Funzionamento generale.Ogni agente possiede una persona e un grafo temporale di eventi personali. Dopo ogni sessione
+viene aggiornato un riassunto; i turni vengono trasformati in osservazioni recuperabili e usati per generare risposte coerenti
+con la storia precedente. Il benchmark valuta tre capacità: risposta a domande sulla conversazione, riassunto degli eventi e
+generazione di dialoghi multimodali coerenti. Le domande includono ragionamento single-hop, multi-hop, temporale, conoscenza
+esterna e casi avversariali.
+Risultati principali. I modelli con contesto lungo e i sistemi RAG migliorano rispetto ai modelli con contesto limitato, ma
+rimangono molto inferiori agli esseri umani. Nel question answering, il miglior risultato riportato per il modello long-context
+raggiunge circa 37.8 F1, contro 87.9 degli annotatori umani. Il RAG basato su osservazioni ottiene risultati più equilibrati e
+raggiunge circa 41.4 F1 nella configurazione migliore. Il ragionamento temporale, le domande avversariali e la comprensione delle
+relazioni causali restano particolarmente difficili. Nel riassunto degli eventi, il semplice aumento della finestra di contesto non
+supera necessariamente la summarization incrementale. Anche nella generazione multimodale, la qualità diminuisce all’aumentare
+della cronologia, mentre il retrieval attenua parzialmente il problema.
+Vantaggi e limiti.Il principale vantaggio è una valutazione ampia e multidimensionale della memoria, con conversazioni
+molto più lunghe dei benchmark precedenti e annotazioni temporali, causali e multimodali. Inoltre, il confronto tra diverse
+rappresentazioni della memoria mostra che osservazioni sintetiche e selettive possono essere più efficaci dei dialoghi completi o dei
+riassunti. I principali limiti sono la natura prevalentemente sintetica dei dati, il numero ridotto di conversazioni, l’uso esclusivo
+dell’inglese, la dipendenza da modelli commerciali e una componente multimodale poco realistica. Le metriche automatiche
+possono inoltre penalizzare risposte corrette ma formulate diversamente.
+Utilità per un framework comparativo.LoCoMo può essere usato come benchmark comune per confrontare sistemi di
+memoria secondo più dimensioni: accuratezza del recupero, qualità della risposta, ragionamento temporale e causale, robustezza
+alle domande non rispondibili, fedeltà dei riassunti e coerenza generativa. Il paper suggerisce anche di distinguere chiaramente
+tra formato della memoria (dialoghi, osservazioni, riassunti),strategia di accesso (contesto completo o retrieval) ecapacità di
+ragionamento del modello. Non vengono però definite metriche di costo, latenza, occupazione della memoria o aggiornamento
+online, che dovrebbero essere aggiunte in un framework più completo.

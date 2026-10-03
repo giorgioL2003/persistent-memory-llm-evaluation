@@ -1,0 +1,6 @@
+metrica,memoria_separata,memoria_condivisa
+Perimetro della memoria,Sessioni S6-S9,Sessioni S1-S9
+Fatti storici presenti nel contesto,1/7,6/7
+Stato coerente con il contesto - Gemma 3 4B,4/4,4/4
+Stato coerente con il contesto - Llama 3.2 3B,2/4,4/4
+Fatti recenti nei controlli,1/3,0/3

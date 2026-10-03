@@ -1,0 +1,5 @@
+scenario,confronto_principale,Turn-level_RAG,Fact-Based_RAG,memoria_con_aggiornamenti,memoria_basata_su_grafi,memoria_gerarchica,cronologia_completa
+2,Turn-level RAG vs Fact-Based RAG,5/7,2/7,—,—,—,6/7
+3,Fact-Based RAG vs memoria con aggiornamenti,—,1/7,1/7,—,—,5/7
+4,Turn-level RAG vs memoria con aggiornamenti vs memoria basata su grafi,4/7,—,2/7,2/7,—,4/7
+5,Turn-level RAG vs memoria con aggiornamenti vs memoria gerarchica,3/7,—,2/7,—,1/7,6/7
