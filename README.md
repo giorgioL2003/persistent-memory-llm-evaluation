@@ -2,6 +2,8 @@
 
 **English title:** Experimental Evaluation of Persistent Memory in LLMs for Conversational Assistant Personalization
 
+[![Tests](https://github.com/giorgioL2003/persistent-memory-llm-evaluation/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/giorgioL2003/persistent-memory-llm-evaluation/actions/workflows/tests.yml)
+
 Experimental framework for evaluating how external memory affects the ability
 of Large Language Models to retrieve and use information distributed across
 multiple conversations.
