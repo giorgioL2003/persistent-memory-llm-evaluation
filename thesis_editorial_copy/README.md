@@ -89,7 +89,7 @@ I file binari non sono stati anonimizzati. Stato verificato:
 | File | Nome presente | Azione |
 |---|---|---|
 | `slides/immagini/sc04_grafo_memoria.png` | sì — nodo `CASO-SC04` etichettato "Caso Corvara Servizi" | rigenerare con "Caso ufficio acquisti dell'azienda committente" |
-| `come_è_fatto_il grafo.png` | sì — stessa immagine, stesso nodo | rigenerare |
+| `memory_graph_structure.png` | sì — stessa immagine, stesso nodo | rigenerare |
 | `diario_tirocinio_aggiornato.pdf` | sì — una occorrenza di "Asteria" | rigenerare dal sorgente |
 | `slides/immagini/sc05_memoria_gerarchica.png` | no | utilizzabile così com'è |
 | `RACCOLTA_RISULTATI/out/risultati.pdf` | no | utilizzabile così com'è |
@@ -99,5 +99,9 @@ una rilettura dei documenti rigenerati.
 
 ## 5. Riproducibilità
 
-`anonimizza.py` in questa cartella rigenera le copie dagli originali e rifà
-le verifiche del punto 3. Va eseguito dalla radice del progetto.
+`scripts/build_thesis_editorial_copy.py` rigenera le copie dagli originali e
+rifà le verifiche del punto 3. Va eseguito dalla radice del progetto:
+
+```bash
+python3 scripts/build_thesis_editorial_copy.py
+```

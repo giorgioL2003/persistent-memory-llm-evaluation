@@ -10,10 +10,13 @@ riottenere l'originale byte per byte. Nient'altro puo' quindi essere cambiato.
 """
 import os, re, shutil, sys, json
 
-ROOT = "/Users/giorgiolai/Desktop/progetto_tirocinio"
-DEST = os.path.join(ROOT, "nomi_aziendali_cambiati")
-SKIP_DIRS = {".git", ".idea", "nomi_aziendali_cambiati"}
-SKIP_PATHS = {"RACCOLTA_RISULTATI/out"}
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEST = os.path.join(ROOT, "thesis_editorial_copy")
+SKIP_DIRS = {".git", ".idea", "thesis_editorial_copy"}
+SKIP_PATHS = {
+    "RACCOLTA_RISULTATI/out",
+    "scripts/build_thesis_editorial_copy.py",
+}
 
 NAMES = ["Asteria Docs", "Lumen Market", "Vesper Logistics",
          "Corvara Servizi", "Ardesia Mobilità", "RapidoPost"]

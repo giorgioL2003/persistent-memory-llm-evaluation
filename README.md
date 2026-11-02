@@ -206,6 +206,15 @@ repeated.
 - [Compact result tables](risultati_tesi/README.md)
 - [RQ2 result synthesis](RACCOLTA_RISULTATI/SINTESI_RQ2.md)
 
+## License
+
+The original software source code is available under the
+[MIT License](LICENSE). Third-party datasets retain their upstream licenses;
+their attribution, pinned versions and local license texts are documented in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+The bachelor's thesis PDF is not distributed under the MIT license.
+
 ## Author
 
 **Giorgio Lai**  
