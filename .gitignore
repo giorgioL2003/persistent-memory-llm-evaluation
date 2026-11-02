@@ -1,4 +1,27 @@
-# Ambiente e cache locali per i grafici Matplotlib
+# Sistema operativo e IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Ambienti e cache Python
 .venv-grafici/
 .matplotlib-cache/
 __pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Materiali temporanei e output generati
+tmp/
+output/
+RACCOLTA_RISULTATI/out/
+
+# File ausiliari LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc

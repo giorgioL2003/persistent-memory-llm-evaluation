@@ -23,7 +23,7 @@ L'[inventario strutturato](/Users/giorgiolai/Desktop/progetto_tirocinio/RACCOLTA
 - `FULL_HISTORY` è un controllo diagnostico separato; in RQ2 è fuori dal budget di 200 token del conteggio locale.
 - Un template con giudizi `null` è una scheda da compilare, non una valutazione conclusa.
 - Le tabelle già presenti nei rapporti sono distinte da un calcolo completo e riproducibile delle metriche.
-- Le copie in `nomi_aziendali_cambiati/` sono presentazioni degli stessi risultati e non nuove esecuzioni. Quando una copia non esiste, il file originale può essere privo di nomi da sostituire: la cartella anonimizzata non è un duplicato completo del progetto.
+- Le copie in `thesis_editorial_copy/` sono presentazioni degli stessi risultati e non nuove esecuzioni. Quando una copia non esiste, il file originale può essere privo di nomi da sostituire: la cartella editoriale non è un duplicato completo del progetto.
 - I dati calcolati sul testo originale (token, punteggi di retrieval, impronte) descrivono il testo dell'esecuzione originale, anche quando una copia editoriale mostra denominazioni diverse.
 - Il protocollo risulta non congelato nei file ispezionati. I giudizi approvati dallo studente su SC05 non equivalgono all'approvazione del relatore.
 
